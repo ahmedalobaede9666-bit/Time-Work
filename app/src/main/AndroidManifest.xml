@@ -14,6 +14,7 @@
 
         <activity
             android:name=".MainActivity"
+            android:icon="@mipmap/time_work_legacy"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

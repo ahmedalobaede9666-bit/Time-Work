@@ -13,8 +13,8 @@ android {
         applicationId = "com.ahmedalobaedy.timework"
         minSdk = 26
         targetSdk = 37
-        versionCode = 2
-        versionName = "0.2.0"
+        versionCode = 3
+        versionName = "0.2.1"
     }
 
     buildFeatures {
@@ -48,16 +48,22 @@ dependencies {
 
 
 val prepareLauncherIcon by tasks.registering {
-    val sourceFile = rootProject.file("assets/time_work_icon.webp.b64")
-    val outputFile = file("src/main/res/drawable-nodpi/time_work_icon.webp")
+    val partsDir = rootProject.file("assets/icon_parts")
+    val outputDir = file("src/main/res/mipmap-xxxhdpi")
+    val outputIcon = outputDir.resolve("ic_launcher.webp")
+    val outputRoundIcon = outputDir.resolve("ic_launcher_round.webp")
 
-    inputs.file(sourceFile)
-    outputs.file(outputFile)
+    inputs.files((1..5).map { partsDir.resolve("part$it.txt") })
+    outputs.files(outputIcon, outputRoundIcon)
 
     doLast {
-        outputFile.parentFile.mkdirs()
-        val encoded = sourceFile.readText().trim()
-        outputFile.writeBytes(Base64.getDecoder().decode(encoded))
+        outputDir.mkdirs()
+        val encoded = (1..5).joinToString("") {
+            partsDir.resolve("part$it.txt").readText().trim()
+        }
+        val bytes = Base64.getDecoder().decode(encoded)
+        outputIcon.writeBytes(bytes)
+        outputRoundIcon.writeBytes(bytes)
     }
 }
 

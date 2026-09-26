@@ -75,7 +75,7 @@ fun TimeWorkApp() {
         },
         bottomBar = {
             if (screen != Screen.ABOUT) {
-                NavigationBar {
+                ShortNavigationBar {
                     NavigationItem(
                         target = Screen.HOME,
                         current = screen,
@@ -131,7 +131,7 @@ private fun NavigationItem(
     icon: ImageVector,
     onClick: (Screen) -> Unit
 ) {
-    NavigationBarItem(
+    ShortNavigationBarItem(
         selected = current == target,
         onClick = { onClick(target) },
         icon = {

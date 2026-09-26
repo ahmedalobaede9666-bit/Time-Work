@@ -29,6 +29,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -36,6 +37,7 @@ import androidx.compose.ui.unit.dp
 import com.ahmedalobaedy.timework.R
 import com.ahmedalobaedy.timework.data.WorkRecord
 import com.ahmedalobaedy.timework.data.WorkSessionStore
+import com.ahmedalobaedy.timework.service.WorkTrackingService
 import kotlinx.coroutines.delay
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
@@ -46,6 +48,7 @@ fun HomeScreen(
     store: WorkSessionStore,
     onRefresh: () -> Unit
 ) {
+    val context = LocalContext.current
     var activeStart by remember { mutableStateOf(store.activeStartMillis) }
     var elapsed by remember {
         mutableLongStateOf(
@@ -98,6 +101,7 @@ fun HomeScreen(
                 onClick = {
                     if (activeStart == null) {
                         store.startWork()
+                        WorkTrackingService.start(context.applicationContext)
                         activeStart = store.activeStartMillis
                         elapsed = 0L
                         onRefresh()
@@ -198,6 +202,7 @@ fun HomeScreen(
                 TextButton(
                     onClick = {
                         lastFinished = store.finishWork()
+                        WorkTrackingService.stop(context.applicationContext)
                         activeStart = null
                         elapsed = 0L
                         showFinishDialog = false

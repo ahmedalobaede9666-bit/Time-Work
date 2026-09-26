@@ -43,8 +43,7 @@
     <string name="today_summary">ملخص اليوم</string>
     <string name="hours_suffix">س</string>
     <string name="about_text">يساعدك Time Work على تسجيل أيام العمل وحساب الساعات ومراجعة الإحصائيات الأسبوعية والشهرية.</string>
-    <string name="first_version_note">نسخة بداية للتطوير عبر GitHub.</string>
-    <string name="background_tracking_active">يستمر حساب وقت العمل في الخلفية</string>
+<string name="background_tracking_active">يستمر حساب وقت العمل في الخلفية</string>
     <string name="work_tracking_channel">تتبع وقت العمل</string>
     <string name="work_tracking_channel_description">إشعار مستمر أثناء يوم العمل النشط</string>
 </resources>

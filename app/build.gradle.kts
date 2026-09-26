@@ -1,3 +1,5 @@
+import java.util.Base64
+
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.plugin.compose")
@@ -11,8 +13,8 @@ android {
         applicationId = "com.ahmedalobaedy.timework"
         minSdk = 26
         targetSdk = 37
-        versionCode = 1
-        versionName = "0.1.0"
+        versionCode = 2
+        versionName = "0.2.0"
     }
 
     buildFeatures {
@@ -42,4 +44,23 @@ dependencies {
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.11.0")
 
     debugImplementation("androidx.compose.ui:ui-tooling")
+}
+
+
+val prepareLauncherIcon by tasks.registering {
+    val sourceFile = rootProject.file("assets/time_work_icon.webp.b64")
+    val outputFile = file("src/main/res/drawable-nodpi/time_work_icon.webp")
+
+    inputs.file(sourceFile)
+    outputs.file(outputFile)
+
+    doLast {
+        outputFile.parentFile.mkdirs()
+        val encoded = sourceFile.readText().trim()
+        outputFile.writeBytes(Base64.getDecoder().decode(encoded))
+    }
+}
+
+tasks.named("preBuild").configure {
+    dependsOn(prepareLauncherIcon)
 }

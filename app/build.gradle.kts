@@ -13,8 +13,8 @@ android {
         applicationId = "com.ahmedalobaedy.timework"
         minSdk = 26
         targetSdk = 37
-        versionCode = 5
-        versionName = "0.2.3"
+        versionCode = 6
+        versionName = "0.2.4"
     }
 
     buildFeatures {
@@ -53,9 +53,10 @@ val prepareLauncherIcon by tasks.registering {
     val outputIcon = outputDir.resolve("ic_launcher.webp")
     val outputRoundIcon = outputDir.resolve("ic_launcher_round.webp")
     val outputForeground = outputDir.resolve("time_work_foreground.webp")
+    val outputLegacy = outputDir.resolve("time_work_legacy.webp")
 
     inputs.files((1..5).map { partsDir.resolve("part$it.txt") })
-    outputs.files(outputIcon, outputRoundIcon, outputForeground)
+    outputs.files(outputIcon, outputRoundIcon, outputForeground, outputLegacy)
 
     doLast {
         outputDir.mkdirs()
@@ -66,6 +67,7 @@ val prepareLauncherIcon by tasks.registering {
         outputIcon.writeBytes(bytes)
         outputRoundIcon.writeBytes(bytes)
         outputForeground.writeBytes(bytes)
+        outputLegacy.writeBytes(bytes)
     }
 }
 

@@ -27,6 +27,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
@@ -238,6 +239,7 @@ private fun WorkCircle(
     Box(
         modifier = Modifier
             .size(230.dp)
+            .clip(CircleShape)
             .background(background, CircleShape)
             .clickable(onClick = onClick),
         contentAlignment = Alignment.Center

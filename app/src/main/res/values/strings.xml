@@ -43,8 +43,7 @@
     <string name="today_summary">Today Summary</string>
     <string name="hours_suffix">h</string>
     <string name="about_text">Time Work helps you record work sessions, calculate hours, and review weekly and monthly statistics.</string>
-    <string name="first_version_note">Starter version for GitHub development.</string>
-    <string name="background_tracking_active">Work time tracking continues in the background</string>
+<string name="background_tracking_active">Work time tracking continues in the background</string>
     <string name="work_tracking_channel">Work Time Tracking</string>
     <string name="work_tracking_channel_description">Persistent notification while a work session is active</string>
 </resources>

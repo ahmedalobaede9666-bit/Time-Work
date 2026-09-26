@@ -18,6 +18,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Email
 import androidx.compose.material.icons.filled.Info
 import androidx.compose.material.icons.filled.Phone
+import androidx.compose.material.icons.filled.Person
 import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
@@ -403,14 +404,6 @@ fun AboutScreen(onBack: () -> Unit) {
                         fontWeight = FontWeight.Bold
                     )
                     Text(text = stringResource(R.string.about_text))
-                    Text(
-                        text = "${stringResource(R.string.version)}: " +
-                            BuildConfig.VERSION_NAME
-                    )
-                    Text(
-                        text = stringResource(R.string.first_version_note),
-                        style = MaterialTheme.typography.bodySmall
-                    )
                 }
             }
         }
@@ -418,6 +411,14 @@ fun AboutScreen(onBack: () -> Unit) {
         item {
             ContactRow(
                 icon = Icons.Default.Info,
+                label = stringResource(R.string.version),
+                value = BuildConfig.VERSION_NAME
+            )
+        }
+
+        item {
+            ContactRow(
+                icon = Icons.Default.Person,
                 label = stringResource(R.string.developer),
                 value = stringResource(R.string.developer_name)
             )
